@@ -14,22 +14,10 @@ export class AppComponent {
   month: number = this.currentTime.getMonth() + 1;
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
+  selectedIngredient=null;
 
-//backround color depending on selection of ingredient
-  priorityColor(currentIngredient){
-    if (currentIngredient.priority === 1){
-      return "bg-success";
-    } else if (currentIngredient.priority === 2) {
-      return  "bg-warning";
-    } else if (currentIngredient.priority === 3) {
-      return  "bg-danger";
-    } else {
-      return "bg-light";
-    }
-  }
-
-//Hard coded recipe object
-  recipes: Recipe[] = [
+  //Hard coded recipe object
+  masterRecipeList: Recipe[] = [
     new Recipe(
       'Picadillo',
       //Ingredient object within recipe object
@@ -65,8 +53,6 @@ export class AppComponent {
     )
   ];
 
-  selectedIngredient=null;
-
   editIngredient(clickedIngredient) {
     this.selectedIngredient = clickedIngredient;
   }
@@ -75,4 +61,7 @@ export class AppComponent {
     this.selectedIngredient = null;
   }
 
+  addIngredient(newIngredient: Recipe) {
+    this.masterRecipeList.push(newIngredient);
+  }
 }

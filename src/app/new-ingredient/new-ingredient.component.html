@@ -1,0 +1,7 @@
+<h1>New Ingredient</h1>
+<div>
+ <label>Enter Ingredient:</label>
+ <input #newIngredient>
+
+  <button (click)="submitForm(newIngredient.value); newIngredient.value='';">Add</button>
+</div>

@@ -1,37 +1,18 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>{{title}}</h1>
-  <h3>{{currentFocus}}</h3>
-</div>
-<h2>Recipes:</h2>
-  <h6>entered {{month}}/{{day}}/{{year}}</h6>
-  <br>
-<ol>
-  <li *ngFor="let currentRecipe of recipes">
-    <ul>
-      <li>{{currentRecipe.name}}</li>
-      <li>Ingredients:
-      <ul *ngFor="let currentIngredient of currentRecipe.ingredients">
-        <li [class]="priorityColor(currentIngredient)">{{currentIngredient.item}} <button (click)="editIngredient(currentIngredient)">Edit</button></li>
-      </ul>
-    </li>
-      <li>{{currentRecipe.description}}</li>
-    </ul>
+<div class="container">
+  <div style="text-align:center">
+    <h1>{{title}}</h1>
+    <h3>{{currentFocus}}</h3>
+  </div>
+  <h2>Recipes:</h2>
+    <h6>entered {{month}}/{{day}}/{{year}}</h6>
     <br>
-    
+  <ol>
+    <app-recipe-list [childRecipeList]="masterRecipeList" (clickSender)="editIngredient($event)"><app-edit-recipe [childSelectedIngredient]="selectedIngredient"></app-edit-recipe>
+    </app-recipe-list>
 
-    <!-- click edit and opition to mark the selected item -->
-    <div *ngIf="selectedIngredient">
-      <label>Edit Item:</label>
-      <br>
-      <input type="radio" [(ngModel)]="selectedIngredient.priority" [value]="1">1 (Need)<br>
-      <input type="radio" [(ngModel)]="selectedIngredient.priority" [value]="2">2 (Have Ingredient)<br>
-      <input type="radio" [(ngModel)]="selectedIngredient.priority" [value]="3">3 (Disreguard)<br>
+  </ol>
+  <app-edit-recipe [childSelectedIngredient]="selectedIngredient" (clickedDone)="finishedEditing()"></app-edit-recipe>
 
-      <label>Edit Ingredient:</label>
-        <input [(ngModel)]="selectedIngredient.item">
 
-      <button (click)="finishedEditing()">Done</button>
-    </div>
-  </li>
-</ol>
+  <app-new-ingredient (sendIngredient)="addIngredient($event)"></app-new-ingredient>
+</div>

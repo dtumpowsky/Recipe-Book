@@ -1,0 +1,14 @@
+<!-- click edit and opition to mark the selected item -->
+
+<div *ngIf="childSelectedIngredient">
+  <label>Edit Item:</label>
+  <br>
+  <input type="radio" [(ngModel)]="childSelectedIngredient.priority" [value]="1">1 (Need)<br>
+  <input type="radio" [(ngModel)]="childSelectedIngredient.priority" [value]="2">2 (Have Ingredient)<br>
+  <input type="radio" [(ngModel)]="childSelectedIngredient.priority" [value]="3">3 (Disreguard)<br>
+
+  <label>Edit Ingredient:</label>
+    <input [(ngModel)]="childSelectedIngredient.item">
+
+  <button (click)="finishedEditing()">Done</button>
+</div>

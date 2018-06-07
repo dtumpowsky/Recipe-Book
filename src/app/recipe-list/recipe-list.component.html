@@ -1,0 +1,12 @@
+<li *ngFor="let currentRecipe of childRecipeList">
+  <ul>
+    <li>{{currentRecipe.name}}</li>
+    <li>Ingredients:
+    <ul *ngFor="let currentIngredient of currentRecipe.ingredients">
+      <li [class]="priorityColor(currentIngredient)">{{currentIngredient.item}} <button (click)="editButtonClicked(currentIngredient)">Edit</button></li>
+    </ul>
+  </li>
+    <li>{{currentRecipe.description}}</li>
+  </ul>
+  <br>
+</li>
